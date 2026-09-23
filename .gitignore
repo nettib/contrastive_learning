@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dataset (large, re-downloadable -- don't commit raw MNIST files)
+data/
+*.gz
+*-ubyte
+
+# Trained model weights (large binary files -- optional to exclude;
+# comment this out if you want to commit them for full reproducibility)
+outputs/*.pt
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+experiment_log.txt
+resnet_log.txt
+nohup.out
