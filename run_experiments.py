@@ -1,5 +1,5 @@
 """
-Runs the 3 required controlled experiments (Section 4), each changing
+Runs the 3 required controlled experiments, each changing
 ONE factor relative to the baseline config:
     baseline: temperature=0.5, augmentation=weak, projection_head=True
 

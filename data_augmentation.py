@@ -1,7 +1,3 @@
-"""
-Contrastive dataset wrapper: for each image, produces TWO augmented views
-(x1, x2), which form a positive pair, per Section 5 of the assignment.
-"""
 import torch
 from torch.utils.data import Dataset
 import torchvision.transforms as T
@@ -32,11 +28,6 @@ def get_strong_augmentation():
 
 
 class ContrastiveMNIST(Dataset):
-    """
-    Wraps raw MNIST numpy arrays. Each __getitem__ returns two augmented
-    views of the SAME image (a positive pair), plus the true label
-    (label is NOT used in training -- only kept for later evaluation).
-    """
     def __init__(self, images, labels, augmentation="weak"):
         self.images = images  # (N, 28, 28) uint8
         self.labels = labels
@@ -76,7 +67,8 @@ class PlainMNIST(Dataset):
 
 if __name__ == "__main__":
     from mnist_loader import load_mnist
-    tr_x, tr_y, te_x, te_y = load_mnist('/home/claude/data/mnist_raw')
+
+    tr_x, tr_y, te_x, te_y = load_mnist()
     ds = ContrastiveMNIST(tr_x[:100], tr_y[:100], augmentation="weak")
     v1, v2, y = ds[0]
     print("view1 shape:", v1.shape, "view2 shape:", v2.shape, "label:", y)

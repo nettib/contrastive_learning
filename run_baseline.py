@@ -1,7 +1,6 @@
 """
 Baseline run: compare a RANDOM (untrained) encoder vs a CONTRASTIVELY
-TRAINED encoder, to demonstrate the effect of training (Section 3:
-"compare the representation before and after contrastive training").
+TRAINED encoder, to demonstrate the effect of training
 """
 import torch
 from torch.utils.data import DataLoader

@@ -1,9 +1,3 @@
-"""
-Nearest-neighbor retrieval visualization (Section 6): show a query image
-and its top-5 retrieved neighbors, for both the baseline (untrained)
-and contrastively trained model, so we can visually inspect quality
-and spot failure cases (wrong retrievals).
-"""
 import torch
 from torch.utils.data import DataLoader
 import numpy as np

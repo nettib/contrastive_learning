@@ -1,6 +1,3 @@
-"""
-Training loop for the contrastive learning pipeline.
-"""
 import torch
 from torch.utils.data import DataLoader
 import time
@@ -63,7 +60,7 @@ def train_contrastive_model(train_images, train_labels,
 
 if __name__ == "__main__":
     from mnist_loader import load_mnist
-    tr_x, tr_y, te_x, te_y = load_mnist('/home/claude/data/mnist_raw')
+    tr_x, tr_y, te_x, te_y = load_mnist()
 
     # Tiny smoke test: 500 images, 2 epochs, just to confirm nothing crashes
     # and loss actually decreases.

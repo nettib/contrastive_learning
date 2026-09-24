@@ -1,5 +1,5 @@
 """
-Representation Quality & Geometry evaluation (Section 3, 5, 6 of assignment).
+Representation Quality & Geometry evaluation
 """
 import torch
 import numpy as np

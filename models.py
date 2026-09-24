@@ -1,7 +1,3 @@
-"""
-Encoder (small CNN) and Projection Head, per Sections 3 and 6 of the
-reference document.
-"""
 import torch
 import torch.nn as nn
 
@@ -9,7 +5,7 @@ import torch.nn as nn
 class SmallCNNEncoder(nn.Module):
     """
     Input:  (B, 1, 28, 28)
-    Output: h, shape (B, embedding_dim)  -- the "main learned representation"
+    Output: h, shape (B, embedding_dim)
     """
     def __init__(self, embedding_dim=128):
         super().__init__()
@@ -33,8 +29,8 @@ class SmallCNNEncoder(nn.Module):
 
 class ProjectionHead(nn.Module):
     """
-    Small MLP: h (embedding_dim) -> z (proj_dim)
-    Used ONLY during contrastive training; discarded afterward.
+    Transforms the encoder representation h into z
+    for the contrastive learning objective.
     """
     def __init__(self, embedding_dim=128, hidden_dim=64, proj_dim=32):
         super().__init__()
@@ -50,24 +46,10 @@ class ProjectionHead(nn.Module):
 
 
 class ContrastiveModel(nn.Module):
-    """
-    Full model: encoder -> (optional) projection head.
-    If use_projection_head=False, the contrastive loss is applied
-    directly on (a linearly reduced) h, for the "no projection head"
-    ablation in Experiment 3.
-
-    encoder_type: "small_cnn" (default) or "resnet18"
-    """
     def __init__(self, embedding_dim=128, proj_dim=32, use_projection_head=True,
                  encoder_type="small_cnn"):
         super().__init__()
-        if encoder_type == "small_cnn":
-            self.encoder = SmallCNNEncoder(embedding_dim=embedding_dim)
-        elif encoder_type == "resnet18":
-            from resnet_encoder import ResNet18Encoder
-            self.encoder = ResNet18Encoder(embedding_dim=embedding_dim)
-        else:
-            raise ValueError(f"Unknown encoder_type: {encoder_type}")
+        self.encoder = SmallCNNEncoder(embedding_dim=embedding_dim)
         self.use_projection_head = use_projection_head
         if use_projection_head:
             self.projector = ProjectionHead(embedding_dim, 64, proj_dim)
